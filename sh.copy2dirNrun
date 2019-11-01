@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+for x in ./*.dat
+do
+	cp -r Ising_src "${x%.*}" && mv "$x" "${x%.*}"
+	cd "${x%.*}"
+	cp $x temperature.dat
+	qsub jobscript_taiwania.sh
+	cd ..
+done
